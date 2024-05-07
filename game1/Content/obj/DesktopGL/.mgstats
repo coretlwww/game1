@@ -1,0 +1,17 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/Анна/source/repos/game1/game1/Content/../../../../../Desktop/игра/Droid Zapper/Droid Zapper/run.png","C:/Users/Анна/source/repos/game1/game1/Content/bin/DesktopGL/run.xnb","TextureProcessor","Texture2DContent",2107,57157,0,1082184
+"C:/Users/Анна/source/repos/game1/game1/Content/attack.png","C:/Users/Анна/source/repos/game1/game1/Content/bin/DesktopGL/attack.xnb","TextureProcessor","Texture2DContent",4275,95205,0,006099
+"C:/Users/Анна/source/repos/game1/game1/Content/damage.png","C:/Users/Анна/source/repos/game1/game1/Content/bin/DesktopGL/damage.xnb","TextureProcessor","Texture2DContent",2161,409685,0,0187765
+"C:/Users/Анна/source/repos/game1/game1/Content/damaged and death.png","C:/Users/Анна/source/repos/game1/game1/Content/bin/DesktopGL/damaged and death.xnb","TextureProcessor","Texture2DContent",3395,76181,0,0051434
+"C:/Users/Анна/source/repos/game1/game1/Content/death.png","C:/Users/Анна/source/repos/game1/game1/Content/bin/DesktopGL/death.xnb","TextureProcessor","Texture2DContent",2737,614485,0,0181529
+"C:/Users/Анна/source/repos/game1/game1/Content/for_map/903d4d86-f7f6-4092-9fdd-762c705d38bf (1).jpeg","C:\Users\Анна\source\repos\game1\game1\Content\bin\DesktopGL\for_map/903d4d86-f7f6-4092-9fdd-762c705d38bf (1).jpeg","CopyItem","File",47144,47144,0,00313
+"C:/Users/Анна/source/repos/game1/game1/Content/for_map/full.png","C:/Users/Анна/source/repos/game1/game1/Content/bin/DesktopGL/for_map/full.xnb","TextureProcessor","Texture2DContent",481458,4939861,0,1598863
+"C:/Users/Анна/source/repos/game1/game1/Content/for_map/Scaffolding_and_BG_Parts (16 x 16).png","C:\Users\Анна\source\repos\game1\game1\Content\bin\DesktopGL\for_map/Scaffolding_and_BG_Parts (16 x 16).png","CopyItem","File",5363,5363,0,0019278
+"C:/Users/Анна/source/repos/game1/game1/Content/for_map/Water+.png","C:\Users\Анна\source\repos\game1\game1\Content\bin\DesktopGL\for_map/Water+.png","CopyItem","File",8580,8580,0,0024647
+"C:/Users/Анна/source/repos/game1/game1/Content/Gray_Tile_Terrain (16 x 16).png","C:/Users/Анна/source/repos/game1/game1/Content/bin/DesktopGL/Gray_Tile_Terrain (16 x 16).xnb","TextureProcessor","Texture2DContent",8296,743509,0,0350667
+"C:/Users/Анна/source/repos/game1/game1/Content/idle.png","C:/Users/Анна/source/repos/game1/game1/Content/bin/DesktopGL/idle.xnb","TextureProcessor","Texture2DContent",1789,409685,0,0172836
+"C:/Users/Анна/source/repos/game1/game1/Content/jump.png","C:/Users/Анна/source/repos/game1/game1/Content/bin/DesktopGL/jump.xnb","TextureProcessor","Texture2DContent",2909,614485,0,0274874
+"C:/Users/Анна/source/repos/game1/game1/Content/lvl1.tmx","C:\Users\Анна\source\repos\game1\game1\Content\bin\DesktopGL\lvl1.tmx","CopyItem","File",15183,15183,0,0014117
+"C:/Users/Анна/source/repos/game1/game1/Content/run.png","C:/Users/Анна/source/repos/game1/game1/Content/bin/DesktopGL/run.xnb","TextureProcessor","Texture2DContent",3297,819285,0,0233226
+"C:/Users/Анна/source/repos/game1/game1/Content/wake.png","C:/Users/Анна/source/repos/game1/game1/Content/bin/DesktopGL/wake.xnb","TextureProcessor","Texture2DContent",1313,57157,0,0046345
+"C:/Users/Анна/source/repos/game1/game1/Content/walk.png","C:/Users/Анна/source/repos/game1/game1/Content/bin/DesktopGL/walk.xnb","TextureProcessor","Texture2DContent",3150,819285,0,0310512

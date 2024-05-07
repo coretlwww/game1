@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Анна/source/repos/game1/game1/Content/../../../../../Desktop/игра/Droid Zapper/Droid Zapper/run.png</File>
+    <File>C:/Users/Анна/source/repos/game1/game1/Content/attack.png</File>
+    <File>C:/Users/Анна/source/repos/game1/game1/Content/damage.png</File>
+    <File>C:/Users/Анна/source/repos/game1/game1/Content/damaged and death.png</File>
+    <File>C:/Users/Анна/source/repos/game1/game1/Content/death.png</File>
+    <File>C:/Users/Анна/source/repos/game1/game1/Content/for_map/full.png</File>
+    <File>C:/Users/Анна/source/repos/game1/game1/Content/Gray_Tile_Terrain (16 x 16).png</File>
+    <File>C:/Users/Анна/source/repos/game1/game1/Content/idle.png</File>
+    <File>C:/Users/Анна/source/repos/game1/game1/Content/jump.png</File>
+    <File>C:/Users/Анна/source/repos/game1/game1/Content/run.png</File>
+    <File>C:/Users/Анна/source/repos/game1/game1/Content/wake.png</File>
+    <File>C:/Users/Анна/source/repos/game1/game1/Content/walk.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File>run.png</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
