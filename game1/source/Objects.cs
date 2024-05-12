@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace game1.source
 {
-    public abstract class Enemies
+    public abstract class Objects
     {
         public Texture2D spritesheet;
         public Vector2 position;
@@ -14,6 +14,8 @@ namespace game1.source
         {
             Idle,
             Run,
+            Jumping,
+            Falling
         }
 
         public abstract void Update();

@@ -22,7 +22,6 @@ namespace game1.source
         private List<Rectangle> collisionRectangles;
         private Rectangle startRect;
         private Rectangle endRect;
-
         #endregion
 
         public Game1()
@@ -41,12 +40,17 @@ namespace game1.source
 
         protected override void LoadContent()
         {
+            // TODO: use this.Content to load your game content here
+
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             #region Player
             _player = new Player(
+                new Vector2(startRect.X, startRect.Y),
                 Content.Load<Texture2D>("idle"),
-                Content.Load<Texture2D>("run"));
+                Content.Load<Texture2D>("run"),
+                Content.Load<Texture2D>("jump"),
+                Content.Load<Texture2D>("jump"));
             #endregion
 
             #region Tilemap
@@ -67,18 +71,25 @@ namespace game1.source
                 {
                     collisionRectangles.Add(new Rectangle((int)obj.X, (int)obj.Y,(int) obj.Width, (int)obj.Height));
                 }
+                if (obj.Name == "Start")
+                {
+                    startRect = new Rectangle((int)obj.X, (int)obj.Y, (int)obj.Width, (int)obj.Height);
+                }
+                if (obj.Name == "End")
+                {
+                    startRect = new Rectangle((int)obj.X, (int)obj.Y, (int)obj.Width, (int)obj.Height);
+                }
             }
 
-            // TODO: use this.Content to load your game content here
+            
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
             // TODO: Add your update logic here
 
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
 
             var initialPosition = _player.position;
            
@@ -86,10 +97,9 @@ namespace game1.source
 
             #region Player Collisions
             //y-axis
-
-
             foreach (var rect in collisionRectangles)
             {
+                if (!_player.isJumping)
                 _player.isFalling = true;
                 if (rect.Intersects(_player.playerFallRect))
                 {
@@ -115,14 +125,15 @@ namespace game1.source
 
         protected override void Draw(GameTime gameTime)
         {
+            // TODO: Add your drawing code here
+
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
             tilemapManager.Draw(_spriteBatch);
             _player.Draw(_spriteBatch, gameTime);
             _spriteBatch.End();
-            // TODO: Add your drawing code here
-
+          
             base.Draw(gameTime);
         }
     }
