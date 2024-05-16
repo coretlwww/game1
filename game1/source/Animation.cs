@@ -11,20 +11,20 @@ namespace game1.source
         int currentFrameNumber = 0;
         float timeSinceLastFrame = 0;
 
-        public Animation(Texture2D spritesheet, int width = 80, int row = 0)
+        public Animation(Texture2D spritesheet, int width = 16, int row = 0)
         {
             this.spritesheet = spritesheet;
             this.row = row;
             frames = (spritesheet.Width / width);
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 position, GameTime gameTime, float msPerFrames = 100)
+        public void Draw(SpriteBatch spriteBatch, Vector2 position, GameTime gameTime, float msPerFrames = 200, SpriteEffects effect = SpriteEffects.None)
         {
             if (currentFrameNumber < frames)
             {
-                var rectangle = new Rectangle(80 * currentFrameNumber, 80 * row, 80, 80);
+                var rectangle = new Rectangle(16 * currentFrameNumber, 16 * row, 16, 16);
                 
-                spriteBatch.Draw(spritesheet, position, rectangle, Color.White);
+                spriteBatch.Draw(spritesheet, position, rectangle, Color.White, 0f, new Vector2(), 1f, effect, 1);
                 
                 timeSinceLastFrame += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 

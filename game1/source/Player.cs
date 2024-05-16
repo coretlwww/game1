@@ -8,6 +8,7 @@ namespace game1.source
     {
         public Vector2 velocity;
         public Rectangle playerFallRect;
+        public SpriteEffects effects;
         
         public float playerSpeed = 2;
         public float fallSpeed = 3;
@@ -26,6 +27,7 @@ namespace game1.source
            
             this.position = position;
             velocity = new Vector2();
+            effects = SpriteEffects.None;
 
             playerAnimation[0] = new Animation(idleSprite);
             playerAnimation[1] = new Animation(runSprite);
@@ -33,8 +35,8 @@ namespace game1.source
             playerAnimation[3] = new Animation(fallSprite);
 
             //платформы
-            hitBox = new Rectangle((int)position.X, (int)position.Y, 64, 40);
-            playerFallRect = new Rectangle((int)position.X, (int)position.Y, 64, 40);
+            hitBox = new Rectangle((int)position.X, (int)position.Y, 16, 16);
+            playerFallRect = new Rectangle((int)position.X, (int)position.Y, 16, 20);
         }
 
         public override void Update()
@@ -67,12 +69,14 @@ namespace game1.source
             {
                 velocity.X -= playerSpeed;
                 playerAnimationController = CurrentAnimation.Run;
+                effects = SpriteEffects.FlipHorizontally;
             }
 
             if (keyboard.IsKeyDown(Keys.D))
             {
                 velocity.X += playerSpeed;
                 playerAnimationController = CurrentAnimation.Run;
+                effects = SpriteEffects.None;
             }
         }
 
@@ -110,16 +114,16 @@ namespace game1.source
             switch (playerAnimationController)
             {
                 case CurrentAnimation.Idle:
-                    playerAnimation[0].Draw(spriteBatch, position, gameTime);
+                    playerAnimation[0].Draw(spriteBatch, position, gameTime, 100, effects);
                     break;
                 case CurrentAnimation.Run:
-                    playerAnimation[1].Draw(spriteBatch, position, gameTime);
+                    playerAnimation[1].Draw(spriteBatch, position, gameTime, 100, effects);
                     break;
                 case CurrentAnimation.Jumping:
-                    playerAnimation[2].Draw(spriteBatch, position, gameTime);
+                    playerAnimation[2].Draw(spriteBatch, position, gameTime, 100, effects);
                     break;
                 case CurrentAnimation.Falling:
-                    playerAnimation[3].Draw(spriteBatch, position, gameTime);
+                    playerAnimation[3].Draw(spriteBatch, position, gameTime, 100, effects);
                     break;
             }
         }

@@ -46,7 +46,7 @@ namespace game1.source
 
             #region Player
             _player = new Player(
-                new Vector2(startRect.X, startRect.Y),
+                new Vector2(startRect.X+10, startRect.Y+10),
                 Content.Load<Texture2D>("idle"),
                 Content.Load<Texture2D>("run"),
                 Content.Load<Texture2D>("jump"),
@@ -77,7 +77,7 @@ namespace game1.source
                 }
                 if (obj.Name == "End")
                 {
-                    startRect = new Rectangle((int)obj.X, (int)obj.Y, (int)obj.Width, (int)obj.Height);
+                    endRect = new Rectangle((int)obj.X, (int)obj.Y, (int)obj.Width, (int)obj.Height);
                 }
             }
 
