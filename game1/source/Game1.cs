@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using TiledSharp;
 
 namespace game1.source
@@ -11,6 +10,9 @@ namespace game1.source
     {
         public GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+        public static float screenWidth;
+        public static float screenHeight;
 
         #region Player
         private Player _player;
@@ -31,6 +33,11 @@ namespace game1.source
         private Rectangle endRect;
         #endregion
 
+        #region Camera
+        private Camera camera;
+        private Matrix transformMatrix;
+        #endregion
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -40,15 +47,18 @@ namespace game1.source
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            _graphics.PreferredBackBufferHeight = 500;
+            _graphics.PreferredBackBufferWidth = 500;
+            _graphics.ApplyChanges();
+
+            screenHeight = _graphics.PreferredBackBufferHeight;
+            screenWidth = _graphics.PreferredBackBufferWidth;
 
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-            // TODO: use this.Content to load your game content here
-
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             #region Player
@@ -104,12 +114,13 @@ namespace game1.source
             enemies.Add( alien );
             #endregion
 
+            #region Camera
+            camera = new Camera();
+            #endregion
         }
 
         protected override void Update(GameTime gameTime)
         {
-            // TODO: Add your update logic here
-
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -149,16 +160,19 @@ namespace game1.source
             }
             #endregion
 
+            #region Camera Update
+            Rectangle target = new Rectangle((int)_player.position.X, (int)_player.position.Y, 16, 16);
+            transformMatrix = camera.Follow(target);
+            #endregion
+
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            // TODO: Add your drawing code here
-
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(transformMatrix: transformMatrix);
 
             tilemapManager.Draw(_spriteBatch);
             _player.Draw(_spriteBatch, gameTime);
@@ -168,6 +182,7 @@ namespace game1.source
                 enemy.Draw(_spriteBatch, gameTime);
             }
             #endregion
+
             _spriteBatch.End();
           
             base.Draw(gameTime);
