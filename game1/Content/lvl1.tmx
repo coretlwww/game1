@@ -154,7 +154,7 @@
   <object id="42" x="558.667" y="48.6667" width="17.3333" height="48.6667"/>
  </objectgroup>
  <objectgroup id="5" name="EnemyPath">
-  <object id="43" name="0" x="401.5" y="387" width="42" height="15.5"/>
+  <object id="43" name="0" x="385.5" y="372.333" width="61.3333" height="18.1667"/>
   <object id="45" name="1" x="626.5" y="415.5" width="43.5" height="18"/>
   <object id="46" name="4" x="778" y="241.5" width="38" height="16.5"/>
   <object id="47" name="2" x="272.25" y="194.75" width="32" height="14"/>

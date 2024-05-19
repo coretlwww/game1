@@ -1,3 +1,4 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/Анна/source/repos/game1/game1/Content/../../../../../Desktop/игра/Droid Zapper/Droid Zapper/run.png","C:/Users/Анна/source/repos/game1/game1/Content/bin/DesktopGL/Content/run.xnb","TextureProcessor","Texture2DContent",2107,57157,0,1070052
-"C:/Users/Анна/source/repos/game1/game1/Content/run.png","C:/Users/Анна/source/repos/game1/game1/Content/bin/DesktopGL/Content/run.xnb","TextureProcessor","Texture2DContent",521,8277,0,0016521
+"C:/Users/Анна/source/repos/game1/game1/Content/../../../../../Desktop/игра/Droid Zapper/Droid Zapper/run.png","C:/Users/Анна/source/repos/game1/game1/Content/bin/DesktopGL/Content/run.xnb","TextureProcessor","Texture2DContent",2107,57157,0,1047706
+"C:/Users/Анна/source/repos/game1/game1/Content/lvl1.tmx","C:\Users\Анна\source\repos\game1\game1\Content\bin\DesktopGL\Content\lvl1.tmx","CopyItem","File",23585,23585,0,0017671
+"C:/Users/Анна/source/repos/game1/game1/Content/run.png","C:/Users/Анна/source/repos/game1/game1/Content/bin/DesktopGL/Content/run.xnb","TextureProcessor","Texture2DContent",521,8277,0,0019697

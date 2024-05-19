@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TiledSharp;
 
 namespace game1.source
@@ -13,6 +14,12 @@ namespace game1.source
 
         #region Player
         private Player _player;
+        #endregion
+
+        #region Enemy
+        private Enemy alien;
+        private List<Enemy> enemies;
+        private List<Rectangle> enemyPath;
         #endregion
 
         #region Tilemap
@@ -46,7 +53,7 @@ namespace game1.source
 
             #region Player
             _player = new Player(
-                new Vector2(startRect.X+10, startRect.Y+10),
+                new Vector2(startRect.X, startRect.Y),
                 Content.Load<Texture2D>("idle"),
                 Content.Load<Texture2D>("run"),
                 Content.Load<Texture2D>("jump"),
@@ -63,6 +70,7 @@ namespace game1.source
             tilemapManager = new TilemapManager(map, tileset, tilesetTileWidth, tileWidth, tileHeight);
             #endregion
 
+            #region Collisions 
             collisionRectangles = new List<Rectangle>();
 
             foreach (var obj in map.ObjectGroups["Collisions"].Objects)
@@ -80,8 +88,22 @@ namespace game1.source
                     endRect = new Rectangle((int)obj.X, (int)obj.Y, (int)obj.Width, (int)obj.Height);
                 }
             }
+            #endregion
 
-            
+            #region Enemy
+            enemyPath = new List<Rectangle>();
+            foreach (var obj in map.ObjectGroups["EnemyPath"].Objects)
+            {
+                enemyPath.Add(new Rectangle((int)obj.X, (int)obj.Y, (int)obj.Width, (int)obj.Height));
+            }
+            enemies = new List<Enemy>();
+            alien = new Enemy(
+                Content.Load<Texture2D>("wake"),
+                enemyPath[0]
+                ); 
+            enemies.Add( alien );
+            #endregion
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -91,11 +113,18 @@ namespace game1.source
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            #region Enemy
+            foreach(var enemy in enemies)
+            {
+                enemy.Update();
+            }
+            #endregion
+
+            #region Player Collisions
             var initialPosition = _player.position;
            
             _player.Update();
 
-            #region Player Collisions
             //y-axis
             foreach (var rect in collisionRectangles)
             {
@@ -130,8 +159,15 @@ namespace game1.source
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
+
             tilemapManager.Draw(_spriteBatch);
             _player.Draw(_spriteBatch, gameTime);
+            #region Enemy
+            foreach (var enemy in enemies)
+            {
+                enemy.Draw(_spriteBatch, gameTime);
+            }
+            #endregion
             _spriteBatch.End();
           
             base.Draw(gameTime);
