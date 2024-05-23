@@ -89,8 +89,7 @@ namespace game1.source
                 velocity.Y += jumpSpeed;
                 jumpSpeed += 1;
                 //Move(keyboard);
-                
-
+               
                 if (velocity.Y >= startY)
                 {
                     velocity.Y = startY;

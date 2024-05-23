@@ -77,8 +77,15 @@
 /copy:for_map/903d4d86-f7f6-4092-9fdd-762c705d38bf (1).jpeg
 
 #begin for_map/full.png
-/importer:
-/processor:
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
 /build:for_map/full.png
 
 #begin for_map/Scaffolding_and_BG_Parts (16 x 16).png
@@ -110,6 +117,9 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:idle.png
+
+#begin Jersey10-Regular.ttf
+/copy:Jersey10-Regular.ttf
 
 #begin jump.png
 /importer:TextureImporter

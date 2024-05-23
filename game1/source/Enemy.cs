@@ -6,7 +6,7 @@ namespace game1.source
 {
     public class Enemy : Objects
     {
-        private EnemyAnim enemyAnimation;
+        private readonly EnemyAnim enemyAnimation;
         
         private Rectangle path;
         
@@ -14,7 +14,7 @@ namespace game1.source
         
         private bool isFacingRight = true;
 
-        public Enemy(Texture2D enemySpriteSheet, Rectangle path, float speed = 2)
+        public Enemy(Texture2D enemySpriteSheet, Rectangle path, float speed = 1)
         {
             enemyAnimation = new EnemyAnim(enemySpriteSheet);
             this.path = path;
@@ -29,13 +29,17 @@ namespace game1.source
             {
                 speed = -speed;
                 isFacingRight = !isFacingRight;
-            
             }
                
             position.X += speed;
 
             hitBox.X = (int) position.X;
             hitBox.Y = (int) position.Y;
+        }
+
+        public bool HasHit(Rectangle playerRect)
+        {
+            return hitBox.Intersects(playerRect);
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)

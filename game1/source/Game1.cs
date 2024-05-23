@@ -1,6 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Apos.Gui;
+using FontStashSharp;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended.Tiled.Serialization;
+using System;
 using System.Collections.Generic;
 using TiledSharp;
 
@@ -10,9 +14,21 @@ namespace game1.source
     {
         public GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private RenderTarget2D renderTarget;
+        private FontSystem fontSystem;
 
-        public static float screenWidth;
-        public static float screenHeight;
+
+        private static float screenWidth;
+        private static float screenHeight;
+       
+        #region UI
+        IMGUI ui;
+        #endregion
+
+        #region Manager
+        private GameManager _gameManager;
+        private bool gameIsOver = false;
+        #endregion
 
         #region Player
         private Player _player;
@@ -36,6 +52,9 @@ namespace game1.source
         #region Camera
         private Camera camera;
         private Matrix transformMatrix;
+
+        public static float ScreenWidth { get => screenWidth; set => screenWidth = value; }
+        public static float ScreenHeight { get => screenHeight; set => screenHeight = value; }
         #endregion
 
         public Game1()
@@ -47,12 +66,12 @@ namespace game1.source
 
         protected override void Initialize()
         {
-            _graphics.PreferredBackBufferHeight = 500;
-            _graphics.PreferredBackBufferWidth = 500;
+            _graphics.PreferredBackBufferHeight = 920;
+            _graphics.PreferredBackBufferWidth = 1080;
             _graphics.ApplyChanges();
 
-            screenHeight = _graphics.PreferredBackBufferHeight;
-            screenWidth = _graphics.PreferredBackBufferWidth;
+            ScreenHeight = _graphics.PreferredBackBufferHeight;
+            ScreenWidth = _graphics.PreferredBackBufferWidth;
 
             base.Initialize();
         }
@@ -60,6 +79,15 @@ namespace game1.source
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            #region UI
+            fontSystem = new FontSystem();
+            fontSystem.AddFont(TitleContainer.OpenStream($"{Content.RootDirectory}/Jersey10-Regular.ttf"));
+
+            GuiHelper.Setup(this, fontSystem);
+
+            ui = new IMGUI();
+            #endregion
 
             #region Player
             _player = new Player(
@@ -77,7 +105,7 @@ namespace game1.source
             int tileHeight = map.Tilesets[0].TileHeight;
             int tilesetTileWidth = tileset.Width / tileWidth;
 
-            tilemapManager = new TilemapManager(map, tileset, tilesetTileWidth, tileWidth, tileHeight);
+            tilemapManager = new TilemapManager(map, tileset, tilesetTileWidth, tileWidth, tileHeight, GraphicsDevice, _spriteBatch);
             #endregion
 
             #region Collisions 
@@ -86,33 +114,41 @@ namespace game1.source
             foreach (var obj in map.ObjectGroups["Collisions"].Objects)
             {
                 if (obj.Name == "")
-                {
                     collisionRectangles.Add(new Rectangle((int)obj.X, (int)obj.Y,(int) obj.Width, (int)obj.Height));
-                }
+
                 if (obj.Name == "Start")
-                {
                     startRect = new Rectangle((int)obj.X, (int)obj.Y, (int)obj.Width, (int)obj.Height);
-                }
+
                 if (obj.Name == "End")
-                {
                     endRect = new Rectangle((int)obj.X, (int)obj.Y, (int)obj.Width, (int)obj.Height);
-                }
             }
             #endregion
 
+            _gameManager = new GameManager(endRect);
+
             #region Enemy
             enemyPath = new List<Rectangle>();
+
             foreach (var obj in map.ObjectGroups["EnemyPath"].Objects)
-            {
                 enemyPath.Add(new Rectangle((int)obj.X, (int)obj.Y, (int)obj.Width, (int)obj.Height));
-            }
+
             enemies = new List<Enemy>();
-            alien = new Enemy(
-                Content.Load<Texture2D>("wake"),
-                enemyPath[0]
-                ); 
-            enemies.Add( alien );
+
+            alien = new Enemy(Content.Load<Texture2D>("wake"), enemyPath[0]);
+            enemies.Add(alien);
+            //alien = new Enemy(Content.Load<Texture2D>("wake"), enemyPath[1]);
+            //enemies.Add(alien);
+            alien = new Enemy(Content.Load<Texture2D>("wake"), enemyPath[2]);
+            enemies.Add(alien);
+            alien = new Enemy(Content.Load<Texture2D>("wake"), enemyPath[3]);
+            enemies.Add(alien);
+            //alien = new Enemy(Content.Load<Texture2D>("wake"), enemyPath[4]);
+            //enemies.Add(alien);
+            alien = new Enemy(Content.Load<Texture2D>("wake"), enemyPath[5]);
+            enemies.Add(alien);
             #endregion
+
+            renderTarget = new RenderTarget2D(GraphicsDevice, 1080, 920);
 
             #region Camera
             camera = new Camera();
@@ -124,14 +160,35 @@ namespace game1.source
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            #region UI
+            GuiHelper.UpdateSetup(gameTime);
+            ui.UpdateStart(gameTime);
+
+            MenuPanel.Push();
+
+            Label.Put("Points:");
+
+            ui.UpdateEnd(gameTime);
+            GuiHelper.UpdateCleanup();
+            #endregion
+
+            #region Managers
+            if (_gameManager.IsGameEnded(_player.hitBox))
+                Console.WriteLine("The end");
+            if (gameIsOver)
+                Console.WriteLine("Game over");
+            #endregion
+
             #region Enemy
-            foreach(var enemy in enemies)
+            foreach (var enemy in enemies)
             {
                 enemy.Update();
+                gameIsOver = gameIsOver || enemy.HasHit(_player.hitBox);
             }
             #endregion
 
             #region Player Collisions
+
             var initialPosition = _player.position;
            
             _player.Update();
@@ -140,7 +197,8 @@ namespace game1.source
             foreach (var rect in collisionRectangles)
             {
                 if (!_player.isJumping)
-                _player.isFalling = true;
+                    _player.isFalling = true;
+
                 if (rect.Intersects(_player.playerFallRect))
                 {
                     _player.isFalling = false;
@@ -165,11 +223,13 @@ namespace game1.source
             transformMatrix = camera.Follow(target);
             #endregion
 
+            DrawLevel(gameTime);
             base.Update(gameTime);
         }
 
-        protected override void Draw(GameTime gameTime)
+        public void DrawLevel(GameTime gameTime)
         {
+            GraphicsDevice.SetRenderTarget(renderTarget);
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin(transformMatrix: transformMatrix);
@@ -178,13 +238,18 @@ namespace game1.source
             _player.Draw(_spriteBatch, gameTime);
             #region Enemy
             foreach (var enemy in enemies)
-            {
                 enemy.Draw(_spriteBatch, gameTime);
-            }
             #endregion
 
             _spriteBatch.End();
-          
+            GraphicsDevice.SetRenderTarget(null);
+        }
+
+        protected override void Draw(GameTime gameTime)
+        {
+            _spriteBatch.Begin(samplerState: SamplerState.PointClamp); //делает изображение четким
+            _spriteBatch.Draw(renderTarget, new Vector2(0,0), null, Color.White, 0f, new Vector2(), 2f, SpriteEffects.None, 0);
+            _spriteBatch.End();
             base.Draw(gameTime);
         }
     }

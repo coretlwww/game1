@@ -34,11 +34,8 @@ namespace game1.source
                     currentFrameNumber++;
 
                     if (currentFrameNumber == frames)
-                    {
                         currentFrameNumber = 0;
-                    }
                 }
-
             }
         }
     }

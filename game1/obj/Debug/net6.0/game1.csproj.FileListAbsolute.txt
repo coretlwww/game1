@@ -57,3 +57,13 @@ C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\full1.tsx
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\attack.png
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\for_map\full.png
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\for_map\full.xnb
+C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Apos.Gui.dll
+C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Apos.Input.dll
+C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Apos.Tweens.dll
+C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Cyotek.Drawing.BitmapFont.dll
+C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\FontStashSharp.Base.dll
+C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\FontStashSharp.MonoGame.dll
+C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\FontStashSharp.Rasterizers.StbTrueTypeSharp.dll
+C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\StbImageSharp.dll
+C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\StbTrueTypeSharp.dll
+C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\Jersey10-Regular.ttf
