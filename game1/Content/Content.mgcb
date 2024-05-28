@@ -25,54 +25,6 @@
 /processorParam:TextureFormat=Color
 /build:../../../../../Desktop/игра/Droid Zapper/Droid Zapper/run.png;run.png
 
-#begin attack.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:attack.png
-
-#begin damage.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:damage.png
-
-#begin damaged and death.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:damaged and death.png
-
-#begin death.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:death.png
-
 #begin for_map/903d4d86-f7f6-4092-9fdd-762c705d38bf (1).jpeg
 /copy:for_map/903d4d86-f7f6-4092-9fdd-762c705d38bf (1).jpeg
 
@@ -93,18 +45,6 @@
 
 #begin for_map/Water+.png
 /copy:for_map/Water+.png
-
-#begin Gray_Tile_Terrain (16 x 16).png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Gray_Tile_Terrain (16 x 16).png
 
 #begin idle.png
 /importer:TextureImporter
@@ -136,6 +76,11 @@
 #begin lvl1.tmx
 /copy:lvl1.tmx
 
+#begin oxygen.png
+/importer:
+/processor:
+/build:oxygen.png
+
 #begin run.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -159,16 +104,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:wake.png
-
-#begin walk.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:walk.png
 

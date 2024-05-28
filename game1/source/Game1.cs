@@ -3,9 +3,9 @@ using FontStashSharp;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended.Tiled.Serialization;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TiledSharp;
 
 namespace game1.source
@@ -16,8 +16,10 @@ namespace game1.source
         private SpriteBatch _spriteBatch;
         private RenderTarget2D renderTarget;
         private FontSystem fontSystem;
-
-
+       
+        int score;
+        float scoreDecreaseInterval = 10f;
+        float timeSinceLastDecrease;
         private static float screenWidth;
         private static float screenHeight;
        
@@ -38,6 +40,11 @@ namespace game1.source
         private Enemy alien;
         private List<Enemy> enemies;
         private List<Rectangle> enemyPath;
+        #endregion
+
+        #region Oxygen
+        Texture2D oxygenTankTexture;
+        List<Vector2> oxygenTanksPositions;
         #endregion
 
         #region Tilemap
@@ -66,6 +73,10 @@ namespace game1.source
 
         protected override void Initialize()
         {
+            score = 1;
+            timeSinceLastDecrease = 0f;
+            oxygenTanksPositions = new List<Vector2>();
+
             _graphics.PreferredBackBufferHeight = 920;
             _graphics.PreferredBackBufferWidth = 1080;
             _graphics.ApplyChanges();
@@ -153,31 +164,21 @@ namespace game1.source
             #region Camera
             camera = new Camera();
             #endregion
+
+            #region Oxygen
+            oxygenTankTexture = Content.Load<Texture2D>("oxygen");
+            foreach (var obj in map.ObjectGroups["Oxygen"].Objects)
+            {
+                Vector2 position = new Vector2((float)obj.X, (float)obj.Y);
+                oxygenTanksPositions.Add(position);
+            }
+            #endregion
         }
 
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            #region UI
-            GuiHelper.UpdateSetup(gameTime);
-            ui.UpdateStart(gameTime);
-
-            MenuPanel.Push();
-
-            Label.Put("Points:");
-
-            ui.UpdateEnd(gameTime);
-            GuiHelper.UpdateCleanup();
-            #endregion
-
-            #region Managers
-            if (_gameManager.IsGameEnded(_player.hitBox))
-                Console.WriteLine("The end");
-            if (gameIsOver)
-                Console.WriteLine("Game over");
-            #endregion
 
             #region Enemy
             foreach (var enemy in enemies)
@@ -223,6 +224,52 @@ namespace game1.source
             transformMatrix = camera.Follow(target);
             #endregion
 
+            #region UI
+            GuiHelper.UpdateSetup(gameTime);
+            ui.UpdateStart(gameTime);
+;
+            Label.Put($"Oxygen: {score}", fontSize: 50, Color.DarkSlateBlue);
+
+            MenuPanel.Push().XY = new Vector2();
+            if (_gameManager.IsGameEnded(_player.hitBox))
+                Label.Put("You Won!", fontSize: 80, Color.DarkSlateBlue);
+            else if (gameIsOver || score == 0)
+                Label.Put("Game over", fontSize: 80, Color.DarkSlateBlue);
+            MenuPanel.Pop();
+
+            ui.UpdateEnd(gameTime);
+            GuiHelper.UpdateCleanup();
+            #endregion
+
+            #region Collecting Oxygen
+            bool IsPlayerPickingOxygenTank(Vector2 playerPosition, Vector2 tankPosition)
+            {
+                float distance = Vector2.Distance(playerPosition, tankPosition);
+                return distance < 32; // Примерный радиус подбора
+            }
+
+            timeSinceLastDecrease += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (timeSinceLastDecrease >= scoreDecreaseInterval)
+            {
+                if (score > 0)
+                    score--;
+
+                timeSinceLastDecrease = 0f;
+            }
+
+            foreach (var position in oxygenTanksPositions.ToList())
+            {
+                if (IsPlayerPickingOxygenTank(_player.position, position))
+                {
+                    oxygenTanksPositions.Remove(position);
+                    score++;
+                }
+            }
+            
+            if (score < 0)
+                Exit();
+            #endregion 
+
             DrawLevel(gameTime);
             base.Update(gameTime);
         }
@@ -241,6 +288,11 @@ namespace game1.source
                 enemy.Draw(_spriteBatch, gameTime);
             #endregion
 
+            #region Oxygen
+            foreach (var position in oxygenTanksPositions)
+                _spriteBatch.Draw(oxygenTankTexture, new Rectangle((int)position.X, (int)position.Y, 16, 16), Color.White);
+
+            #endregion
             _spriteBatch.End();
             GraphicsDevice.SetRenderTarget(null);
         }
@@ -250,6 +302,7 @@ namespace game1.source
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp); //делает изображение четким
             _spriteBatch.Draw(renderTarget, new Vector2(0,0), null, Color.White, 0f, new Vector2(), 2f, SpriteEffects.None, 0);
             _spriteBatch.End();
+            ui.Draw(gameTime);
             base.Draw(gameTime);
         }
     }

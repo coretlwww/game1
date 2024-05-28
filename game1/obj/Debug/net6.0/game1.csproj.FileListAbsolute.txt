@@ -24,17 +24,11 @@ C:\Users\Анна\source\repos\game1\game1\obj\Debug\net6.0\game1.pdb
 C:\Users\Анна\source\repos\game1\game1\obj\Debug\net6.0\game1.genruntimeconfig.cache
 C:\Users\Анна\source\repos\game1\game1\obj\Debug\net6.0\ref\game1.dll
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\903d4d86-f7f6-4092-9fdd-762c705d38bf (1).xnb
-C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\attack.xnb
-C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\damage.xnb
-C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\damaged and death.xnb
-C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\death.xnb
-C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\Gray_Tile_Terrain (16 x 16).xnb
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\idle.xnb
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\jump.xnb
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\run.xnb
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\Scaffolding_and_BG_Parts (16 x 16).xnb
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\wake.xnb
-C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\walk.xnb
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\Water+.xnb
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\lv1.tmx
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\MonoGame.Extended.dll
@@ -54,7 +48,6 @@ C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\tiled\full.t
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\full.tsx
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\tiled\full1.tsx
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\full1.tsx
-C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\attack.png
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\for_map\full.png
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\for_map\full.xnb
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Apos.Gui.dll
@@ -67,3 +60,5 @@ C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\FontStashSharp.Raste
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\StbImageSharp.dll
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\StbTrueTypeSharp.dll
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\Jersey10-Regular.ttf
+C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\oxygen.png
+C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\oxygen.xnb
