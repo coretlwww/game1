@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/Users/Анна/source/repos/game1/game1/Content/Sprites/oxygen.png</SourceFile>
+  <SourceTime>2024-05-28T15:46:42.8321099+05:00</SourceTime>
+  <DestFile>C:/Users/Анна/source/repos/game1/game1/Content/bin/DesktopGL/Content/Sprites/oxygen.xnb</DestFile>
+  <DestTime>2024-05-29T12:47:29.2489422+05:00</DestTime>
+  <Importer>TextureImporter</Importer>
+  <ImporterTime>2022-07-26T16:44:56+05:00</ImporterTime>
+  <Processor>TextureProcessor</Processor>
+  <ProcessorTime>2022-07-26T16:44:56+05:00</ProcessorTime>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
