@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using TiledSharp;
 
-namespace game1.source
+namespace game1
 {
     public class TilemapManager
     {
@@ -22,7 +22,7 @@ namespace game1.source
             this.tileWidth = tileWidth;
             this.tileHeight = tileHeight;
 
-            renderTarget = new RenderTarget2D(graphicsDevice, 1024, 512);
+            renderTarget = new RenderTarget2D(graphicsDevice, 1080, 990);
             DrawTilemap(graphicsDevice, spriteBatch);
         }
 

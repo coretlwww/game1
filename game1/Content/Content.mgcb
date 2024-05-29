@@ -19,30 +19,6 @@
 #begin Jersey10-Regular.ttf
 /copy:Jersey10-Regular.ttf
 
-#begin Map/903d4d86-f7f6-4092-9fdd-762c705d38bf (1).jpeg
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Map/903d4d86-f7f6-4092-9fdd-762c705d38bf (1).jpeg
-
-#begin Map/Brown_Tile_Terrain (16 x 16).png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Map/Brown_Tile_Terrain (16 x 16).png
-
 #begin Map/full.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -55,44 +31,8 @@
 /processorParam:TextureFormat=Color
 /build:Map/full.png
 
-#begin Map/lvl1.tmx
-/copy:Map/lvl1.tmx
-
-#begin Map/Scaffolding_and_BG_Parts (16 x 16).png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Map/Scaffolding_and_BG_Parts (16 x 16).png
-
-#begin Map/tileset.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Map/tileset.png
-
-#begin Map/Water+.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Map/Water+.png
+#begin Map/mainLevel.tmx
+/copy:Map/mainLevel.tmx
 
 #begin Sprites/idle.png
 /importer:TextureImporter

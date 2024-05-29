@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace game1.source
+namespace game1
 {
     public class Player : Objects
     {
@@ -34,7 +34,6 @@ namespace game1.source
             playerAnimation[2] = new Animation(jumpSprite, 16, 16);
             playerAnimation[3] = new Animation(fallSprite, 16, 16);
 
-            //платформы
             hitBox = new Rectangle((int)position.X, (int)position.Y, 16, 16);
             playerFallRect = new Rectangle((int)position.X, (int)position.Y, 16, 20);
         }
@@ -88,7 +87,6 @@ namespace game1.source
                 playerAnimationController= CurrentAnimation.Jumping;
                 velocity.Y += jumpSpeed;
                 jumpSpeed += 1;
-                //Move(keyboard);
                
                 if (velocity.Y >= startY)
                 {

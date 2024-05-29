@@ -69,8 +69,10 @@ C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\Sprites\wake
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\Sprites\oxygen.xnb
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\Map\903d4d86-f7f6-4092-9fdd-762c705d38bf (1).xnb
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\Map\Brown_Tile_Terrain (16 x 16).xnb
-C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\Map\full.xnb
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\Map\lvl1.tmx
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\Map\Scaffolding_and_BG_Parts (16 x 16).xnb
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\Map\tileset.xnb
 C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\Map\Water+.xnb
+C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\Map\full.png
+C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\Map\mainLevel.tmx
+C:\Users\Анна\source\repos\game1\game1\bin\Debug\net6.0\Content\Map\full.xnb

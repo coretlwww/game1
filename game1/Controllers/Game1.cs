@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TiledSharp;
 
-namespace game1.source
+namespace game1
 {
     public class Game1 : Game
     {
@@ -19,11 +19,10 @@ namespace game1.source
         int score;
         readonly float scoreDecreaseInterval = 10f;
         float timeSinceLastDecrease;
-        private static float screenWidth;
-        private static float screenHeight;
        
         #region UI
         IMGUI ui;
+        bool isTextShown = false;
         #endregion
 
         #region Manager
@@ -59,8 +58,8 @@ namespace game1.source
         private Camera camera;
         private Matrix transformMatrix;
 
-        public static float ScreenWidth { get => screenWidth; set => screenWidth = value; }
-        public static float ScreenHeight { get => screenHeight; set => screenHeight = value; }
+        public static float ScreenWidth => 1080f;
+        public static float ScreenHeight => 990f;
         #endregion
 
         public Game1()
@@ -76,12 +75,9 @@ namespace game1.source
             timeSinceLastDecrease = 0f;
             oxygenTanksPositions = new List<Vector2>();
 
-            _graphics.PreferredBackBufferHeight = 920;
-            _graphics.PreferredBackBufferWidth = 1080;
+            _graphics.PreferredBackBufferHeight = (int) ScreenHeight;
+            _graphics.PreferredBackBufferWidth = (int) ScreenWidth;
             _graphics.ApplyChanges();
-
-            ScreenHeight = _graphics.PreferredBackBufferHeight;
-            ScreenWidth = _graphics.PreferredBackBufferWidth;
 
             base.Initialize();
         }
@@ -109,7 +105,7 @@ namespace game1.source
             #endregion
 
             #region Tilemap
-            map = new TmxMap("Content\\Map\\lvl1.tmx");
+            map = new TmxMap("Content\\Map\\mainLevel.tmx");
             tileset = Content.Load<Texture2D>("Map\\" + map.Tilesets[0].Name.ToString());
             int tileWidth = map.Tilesets[0].TileWidth;
             int tileHeight = map.Tilesets[0].TileHeight;
@@ -144,25 +140,29 @@ namespace game1.source
 
             enemies = new List<Enemy>();
 
-            alien = new Enemy(Content.Load<Texture2D>("Sprites\\wake"), enemyPath[0]);
-            enemies.Add(alien);
-            //alien = new Enemy(Content.Load<Texture2D>("wake"), enemyPath[1]);
+            //alien = new Enemy(Content.Load<Texture2D>("Sprites\\wake"), enemyPath[0]);
             //enemies.Add(alien);
+            alien = new Enemy(Content.Load<Texture2D>("Sprites\\wake"), enemyPath[1]);
+            enemies.Add(alien);
             alien = new Enemy(Content.Load<Texture2D>("Sprites\\wake"), enemyPath[2]);
             enemies.Add(alien);
             alien = new Enemy(Content.Load<Texture2D>("Sprites\\wake"), enemyPath[3]);
             enemies.Add(alien);
-            //alien = new Enemy(Content.Load<Texture2D>("wake"), enemyPath[4]);
+            //alien = new Enemy(Content.Load<Texture2D>("Sprites\\wake"), enemyPath[4]);
             //enemies.Add(alien);
             alien = new Enemy(Content.Load<Texture2D>("Sprites\\wake"), enemyPath[5]);
             enemies.Add(alien);
-            #endregion
-
-            renderTarget = new RenderTarget2D(GraphicsDevice, 1080, 920);
+            //alien = new Enemy(Content.Load<Texture2D>("Sprites\\wake"), enemyPath[6]);
+            //enemies.Add(alien);
+            alien = new Enemy(Content.Load<Texture2D>("Sprites\\wake"), enemyPath[7]);
+            enemies.Add(alien);
+            #endregion  
 
             #region Camera
             camera = new Camera();
             #endregion
+
+            renderTarget = new RenderTarget2D(GraphicsDevice, 1080, 990);
 
             #region Oxygen
             oxygenTankTexture = Content.Load<Texture2D>("Sprites\\oxygen");
@@ -187,43 +187,12 @@ namespace game1.source
             }
             #endregion
 
-            #region Player Collisions
-
-            var initialPosition = _player.position;
-           
-            _player.Update();
-
-            //y-axis
-            foreach (var rect in collisionRectangles)
-            {
-                if (!_player.isJumping)
-                    _player.isFalling = true;
-
-                if (rect.Intersects(_player.playerFallRect))
-                {
-                    _player.isFalling = false;
-                    break;
-                }
-            }
-
-            //x-axis
-            foreach (var rect in collisionRectangles)
-            {
-                if (rect.Intersects(_player.hitBox))
-                {
-                    _player.position.X = initialPosition.X;
-                    _player.velocity.X = initialPosition.X;
-                    break;
-                }
-            }
-            #endregion
-
             #region Camera Update
             Rectangle target = new((int)_player.position.X, (int)_player.position.Y, 16, 16);
             transformMatrix = camera.Follow(target);
             #endregion
 
-            #region UI
+            #region UI & Player Collision
             GuiHelper.UpdateSetup(gameTime);
             ui.UpdateStart(gameTime);
 ;
@@ -231,10 +200,48 @@ namespace game1.source
 
             MenuPanel.Push().XY = new Vector2();
             if (_gameManager.IsGameEnded(_player.hitBox))
+            {
                 Label.Put("You Won!", fontSize: 80, Color.DarkSlateBlue);
+                isTextShown = true;
+            }
+               
             else if (gameIsOver || score == 0)
+            {
                 Label.Put("Game over", fontSize: 80, Color.DarkSlateBlue);
+                isTextShown = true;
+            }
             MenuPanel.Pop();
+
+            if (!isTextShown)
+            {
+                var initialPosition = _player.position;
+
+                _player.Update();
+
+                //y-axis
+                foreach (var rect in collisionRectangles)
+                {
+                    if (!_player.isJumping)
+                        _player.isFalling = true;
+
+                    if (rect.Intersects(_player.playerFallRect))
+                    {
+                        _player.isFalling = false;
+                        break;
+                    }
+                }
+
+                //x-axis
+                foreach (var rect in collisionRectangles)
+                {
+                    if (rect.Intersects(_player.hitBox))
+                    {
+                        _player.position.X = initialPosition.X;
+                        _player.velocity.X = initialPosition.X;
+                        break;
+                    }
+                }
+            }
 
             ui.UpdateEnd(gameTime);
             GuiHelper.UpdateCleanup();
@@ -281,7 +288,9 @@ namespace game1.source
             _spriteBatch.Begin(transformMatrix: transformMatrix);
 
             tilemapManager.Draw(_spriteBatch);
+
             _player.Draw(_spriteBatch, gameTime);
+
             #region Enemy
             foreach (var enemy in enemies)
                 enemy.Draw(_spriteBatch, gameTime);
@@ -292,13 +301,14 @@ namespace game1.source
                 _spriteBatch.Draw(oxygenTankTexture, new Rectangle((int)position.X, (int)position.Y, 16, 16), Color.White);
 
             #endregion
+
             _spriteBatch.End();
             GraphicsDevice.SetRenderTarget(null);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            _spriteBatch.Begin(samplerState: SamplerState.PointClamp); //делает изображение четким
+            _spriteBatch.Begin(samplerState: SamplerState.PointClamp); 
             _spriteBatch.Draw(renderTarget, new Vector2(0,0), null, Color.White, 0f, new Vector2(), 2f, SpriteEffects.None, 0);
             _spriteBatch.End();
             ui.Draw(gameTime);

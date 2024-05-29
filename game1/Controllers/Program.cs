@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace game1.source;
+namespace game1;
 public static class Program
 {
     [STAThread]
