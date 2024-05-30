@@ -56,6 +56,7 @@ namespace game1
                     }
                 }
             }
+
             spriteBatch.End();
             graphicsDevice.SetRenderTarget(null);
         }

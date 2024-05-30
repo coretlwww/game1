@@ -7,11 +7,8 @@ namespace game1
     public class Enemy : Objects
     {
         private readonly Animation enemyAnimation;
-        
         private Rectangle path;
-        
         private float speed = 2;
-        
         private bool isFacingRight = true;
 
         public Enemy(Texture2D enemySpriteSheet, Rectangle path, float speed = 1)

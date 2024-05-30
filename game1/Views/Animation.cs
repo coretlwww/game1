@@ -18,7 +18,7 @@ namespace game1
             this.spritesheet = spritesheet;
             this.row = row;
             this.width = width;
-            this.height = heigth;
+            height = heigth;
             frames = (spritesheet.Width / width);
         }
 

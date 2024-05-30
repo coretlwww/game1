@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace game1
 {
-    public abstract class Objects
+    public abstract class Objects 
     {
         public Texture2D spritesheet;
         public Vector2 position;

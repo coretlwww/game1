@@ -2,7 +2,6 @@
 using FontStashSharp;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.Linq;
 using TiledSharp;
@@ -14,15 +13,11 @@ namespace game1
         public GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private RenderTarget2D renderTarget;
-        private FontSystem fontSystem;
-       
-        int score;
-        readonly float scoreDecreaseInterval = 10f;
-        float timeSinceLastDecrease;
-       
+
         #region UI
         IMGUI ui;
         bool isTextShown = false;
+        private FontSystem fontSystem;
         #endregion
 
         #region Manager
@@ -43,6 +38,9 @@ namespace game1
         #region Oxygen
         Texture2D oxygenTankTexture;
         List<Vector2> oxygenTanksPositions;
+        int score = 1;
+        readonly float scoreDecreaseInterval = 10f;
+        float timeSinceLastDecrease = 0f;
         #endregion
 
         #region Tilemap
@@ -71,12 +69,8 @@ namespace game1
 
         protected override void Initialize()
         {
-            score = 1;
-            timeSinceLastDecrease = 0f;
-            oxygenTanksPositions = new List<Vector2>();
-
-            _graphics.PreferredBackBufferHeight = (int) ScreenHeight;
-            _graphics.PreferredBackBufferWidth = (int) ScreenWidth;
+            _graphics.PreferredBackBufferHeight = (int)ScreenHeight;
+            _graphics.PreferredBackBufferWidth = (int)ScreenWidth;
             _graphics.ApplyChanges();
 
             base.Initialize();
@@ -120,7 +114,7 @@ namespace game1
             foreach (var obj in map.ObjectGroups["Collisions"].Objects)
             {
                 if (obj.Name == "")
-                    collisionRectangles.Add(new Rectangle((int)obj.X, (int)obj.Y,(int) obj.Width, (int)obj.Height));
+                    collisionRectangles.Add(new Rectangle((int)obj.X, (int)obj.Y, (int)obj.Width, (int)obj.Height));
 
                 if (obj.Name == "Start")
                     startRect = new Rectangle((int)obj.X, (int)obj.Y, (int)obj.Width, (int)obj.Height);
@@ -165,6 +159,7 @@ namespace game1
             renderTarget = new RenderTarget2D(GraphicsDevice, 1080, 990);
 
             #region Oxygen
+            oxygenTanksPositions = new List<Vector2>();
             oxygenTankTexture = Content.Load<Texture2D>("Sprites\\oxygen");
             foreach (var obj in map.ObjectGroups["Oxygen"].Objects)
             {
@@ -176,9 +171,6 @@ namespace game1
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
             #region Enemy
             foreach (var enemy in enemies)
             {
@@ -195,7 +187,7 @@ namespace game1
             #region UI & Player Collision
             GuiHelper.UpdateSetup(gameTime);
             ui.UpdateStart(gameTime);
-;
+            
             Label.Put($"Oxygen: {score}", fontSize: 50, Color.DarkSlateBlue);
 
             MenuPanel.Push().XY = new Vector2();
@@ -204,7 +196,7 @@ namespace game1
                 Label.Put("You Won!", fontSize: 80, Color.DarkSlateBlue);
                 isTextShown = true;
             }
-               
+
             else if (gameIsOver || score == 0)
             {
                 Label.Put("Game over", fontSize: 80, Color.DarkSlateBlue);
@@ -271,7 +263,7 @@ namespace game1
                     score++;
                 }
             }
-            
+
             if (score < 0)
                 Exit();
             #endregion 
@@ -308,8 +300,8 @@ namespace game1
 
         protected override void Draw(GameTime gameTime)
         {
-            _spriteBatch.Begin(samplerState: SamplerState.PointClamp); 
-            _spriteBatch.Draw(renderTarget, new Vector2(0,0), null, Color.White, 0f, new Vector2(), 2f, SpriteEffects.None, 0);
+            _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            _spriteBatch.Draw(renderTarget, new Vector2(0, 0), null, Color.White, 0f, new Vector2(), 2f, SpriteEffects.None, 0);
             _spriteBatch.End();
             ui.Draw(gameTime);
             base.Draw(gameTime);
