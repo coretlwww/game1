@@ -138,16 +138,16 @@ namespace game1
             //enemies.Add(alien);
             alien = new Enemy(Content.Load<Texture2D>("Sprites\\wake"), enemyPath[1]);
             enemies.Add(alien);
-            alien = new Enemy(Content.Load<Texture2D>("Sprites\\wake"), enemyPath[2]);
-            enemies.Add(alien);
+            //alien = new Enemy(Content.Load<Texture2D>("Sprites\\wake"), enemyPath[2]);
+            //enemies.Add(alien);
             alien = new Enemy(Content.Load<Texture2D>("Sprites\\wake"), enemyPath[3]);
             enemies.Add(alien);
             //alien = new Enemy(Content.Load<Texture2D>("Sprites\\wake"), enemyPath[4]);
             //enemies.Add(alien);
             alien = new Enemy(Content.Load<Texture2D>("Sprites\\wake"), enemyPath[5]);
             enemies.Add(alien);
-            //alien = new Enemy(Content.Load<Texture2D>("Sprites\\wake"), enemyPath[6]);
-            //enemies.Add(alien);
+            alien = new Enemy(Content.Load<Texture2D>("Sprites\\wake"), enemyPath[6]);
+            enemies.Add(alien);
             alien = new Enemy(Content.Load<Texture2D>("Sprites\\wake"), enemyPath[7]);
             enemies.Add(alien);
             #endregion  
@@ -188,7 +188,7 @@ namespace game1
             GuiHelper.UpdateSetup(gameTime);
             ui.UpdateStart(gameTime);
             
-            Label.Put($"Oxygen: {score}", fontSize: 50, Color.DarkSlateBlue);
+            Label.Put($"Oxygen: {score}", fontSize: 50, Color.Navy);
 
             MenuPanel.Push().XY = new Vector2();
             if (_gameManager.IsGameEnded(_player.hitBox))
@@ -199,7 +199,7 @@ namespace game1
 
             else if (gameIsOver || score == 0)
             {
-                Label.Put("Game over", fontSize: 80, Color.DarkSlateBlue);
+                Label.Put("Game over", fontSize: 80, Color.Navy);
                 isTextShown = true;
             }
             MenuPanel.Pop();
